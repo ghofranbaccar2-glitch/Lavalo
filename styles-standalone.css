@@ -1,0 +1,428 @@
+/* CSS Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Design System Variables */
+:root {
+  --background: hsl(220, 30%, 8%);
+  --foreground: hsl(210, 40%, 98%);
+  --card: hsl(220, 25%, 12%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --primary: hsl(210, 95%, 55%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(195, 85%, 50%);
+  --secondary-foreground: hsl(220, 30%, 8%);
+  --muted: hsl(220, 20%, 18%);
+  --muted-foreground: hsl(215, 20%, 65%);
+  --accent: hsl(200, 90%, 60%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --border: hsl(220, 20%, 20%);
+  --radius: 0.75rem;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.animated-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, hsl(210, 95%, 55%), hsl(200, 90%, 60%), hsl(195, 85%, 50%));
+  opacity: 0.1;
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=');
+  opacity: 0.4;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .hero-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.hero-photo {
+  display: flex;
+  justify-content: center;
+  animation: fade-in 0.6s ease-out;
+}
+
+.photo-wrapper {
+  position: relative;
+}
+
+.photo-glow {
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  border-radius: 50%;
+  opacity: 0.75;
+  filter: blur(40px);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.profile-image {
+  position: relative;
+  width: 256px;
+  height: 256px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--card);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 768px) {
+  .profile-image {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+.hero-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  animation: fade-in 0.6s ease-out;
+}
+
+@media (min-width: 768px) {
+  .hero-info {
+    text-align: left;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background: var(--card);
+  border: 1px solid hsl(210, 95%, 55%, 0.3);
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  width: fit-content;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .badge {
+    margin: 0;
+  }
+}
+
+.badge-icon {
+  color: var(--primary);
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3.75rem;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(to right, var(--primary), var(--accent), var(--secondary));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: var(--muted-foreground);
+  line-height: 1.8;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .social-links {
+    justify-content: flex-start;
+  }
+}
+
+.social-link {
+  display: flex;
+  padding: 0.75rem;
+  border-radius: 9999px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-link:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Passions Section */
+.passions-section {
+  padding: 5rem 1rem;
+  background: hsl(220, 20%, 18%, 0.3);
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.goals-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fade-in 0.6s ease-out;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 3rem;
+  }
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: var(--muted-foreground);
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.passions-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .passions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .passions-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.passion-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fade-in 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.passion-card:hover {
+  transform: translateY(-8px);
+  border-color: hsl(210, 95%, 55%, 0.5);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+}
+
+.card-header {
+  margin-bottom: 1rem;
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.passion-card:hover .card-icon {
+  transform: scale(1.1);
+}
+
+.card-icon svg {
+  color: var(--primary-foreground);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: var(--muted-foreground);
+}
+
+/* Goals Section */
+.goals-section {
+  padding: 5rem 1rem;
+}
+
+.goals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fade-in 0.6s ease-out;
+}
+
+.goal-card {
+  padding: 2rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, var(--card) 0%, var(--muted) 100%);
+  border: 1px solid var(--border);
+  display: flex;
+  gap: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .goal-card {
+    flex-direction: row;
+  }
+}
+
+.goal-card:hover {
+  border-color: hsl(210, 95%, 55%, 0.5);
+}
+
+.goal-icon-wrapper {
+  flex-shrink: 0;
+}
+
+.goal-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.goal-icon-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
+.goal-icon-secondary {
+  background: linear-gradient(135deg, var(--accent), var(--secondary));
+}
+
+.goal-icon svg {
+  color: var(--primary-foreground);
+}
+
+.goal-content {
+  flex: 1;
+}
+
+.goal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.goal-description {
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+  line-height: 1.8;
+}
